@@ -178,6 +178,9 @@ select distinct customer_name, product_name
 		   inner join product
 		   on product.product_id = cus_order.product_id
 ```
+
+![customer&product](customer&product.PNG)
+
 ### Add quantity and total cost per order 
 ```sql
 select customer_name, 
@@ -193,6 +196,10 @@ select customer_name,
 		   group by customer_name, product_name, cus_order.quantity,product.price
 		   order by customer_name desc;
 ```
+
+![totalcostperorder](totalcostperorder.PNG)
+
+
 ### Total spending per customer 
 ```sql
 select customer_name, sum(total_cost) as total_payment
@@ -200,6 +207,10 @@ select customer_name, sum(total_cost) as total_payment
 		   group by customer_name
 		   order by sum(total_cost) desc;
 ```
+
+![totalspendingpercustomer](totalspendingpercustomer.PNG)
+
+
 ### Creating views
 - combined_table
 ```sql
