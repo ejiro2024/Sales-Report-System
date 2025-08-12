@@ -277,29 +277,22 @@ Lower-cost accessories (e.g., Ear Pieces, Headphones, Screen Guards) sell in sma
 
 ## Conclusion and Recommendations
 
-- Customer Retention for Top Spenders
+This project successfully demonstrated how relational data from multiple tables can be integrated to produce actionable sales insights as well as reveal clear patterns in customer spending, product performance, and revenue distribution. The findings support data-driven strategies for customer retention, targeted marketing, and inventory optimization.
 
-Implement loyalty programs, personalized offers, or early product access for Alice Smith and Charlie Okafor to maintain their engagement.
+The following are my recommendations:
 
-- Targeted Marketing for Low Spenders
+- Retain Top Customers – Introduce loyalty programs, exclusive offers, and early product access for high-value customers (e.g., Alice Smith, Charlie Okafor).
 
-Offer bundle deals or discounts to customers like Bob Johnson to encourage more purchases.
+- Boost Low Spender Engagement – Use targeted promotions and bundled offers to increase purchases from low-spending customers (e.g., Bob Johnson).
 
-- Upselling & Cross-Selling Opportunities
+- Maximize Upsell & Cross-Sell – Offer complementary products (e.g., accessories with laptops and smartphones) to high-spending customers.
 
-Suggest complementary products to high spenders like Alice and Charlie — e.g., offer accessories with Laptops and Smartphones.
+- Broaden Customer Base – Implement acquisition strategies to reduce dependence on a small number of high spenders.
 
-- Diversification of Customer Base
+- Optimize Inventory – Maintain adequate stock of high-demand, high-value products while promoting accessories as add-ons to increase average order value.
 
-Acquire new customers to reduce reliance on a few high spenders, balancing revenue streams.
+- Enhance Reporting Capabilities – Incorporate date filters for flexible analysis and integrate predictive sales forecasting for proactive decision-making.
 
-- Stock Prioritization
 
-Keep high-value items like Laptops and Smartphones well-stocked.
-
-- Promote accessories as add-on purchases to boost total order value.
-
-- Add date filters for custom time ranges.
-
-- Integrate predictive sales forecasting.
-  
+### Back to top 
+###### [Table of Content](#Table-of-Content)
