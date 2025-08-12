@@ -1,4 +1,12 @@
-# Sales-Report-System
+# Sales-Reporting-System
+
+
+Welcome to the Sales Reporting System – where raw data transforms into business intelligence. This project bridges multiple datasets to reveal who buys what, how much they spend, and what drives revenue.
+
+Dive in to explore powerful insights, smart queries, and strategies for data-driven decision-making.
+
+
+![salesreportingpix](salesreportingpix.jpg)
 
 ## Table of Content
 
