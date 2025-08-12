@@ -15,12 +15,291 @@
 
 ## Project Overview
 
+The Sales Reporting System is a database-driven reporting solution designed to combine data from multiple related tables to produce meaningful sales insights. By linking customer, product, and transaction datasets, this system helps identify who bought what, how much they spent, and overall sales trends which are essential in driving business growth.
+
+This project demonstrates data analysis, SQL querying, and business intelligence skills while providing a reusable reporting framework for any sales-related business.
+
 ## Data source
+
+The data was generated randomly drawing from real world scenario.
+
+Example tables used:
+
+1. Customers Table
+
+customer_id (Primary Key) 
+
+customer_name  
+
+email
+
+2. Products Table
+
+product_id (Primary Key)
+
+product_name
+
+price
+
+3. Cus_Order Table
+ 
+order_id   
+
+customer_id (Foreign Key)
+
+product_id (Foreign Key)
+
+quantity
+
 ## Problem Statement
+
+In many businesses, organizations and government parastaltals, sales data is stored across multiple tables in a relational database. For example, customer records in one table, product details in another, and sales transactions in a third. This structure supports efficient data storage, however, it poses the challenge of generating quick, insightful reports.
+
+Managers and analysts often face difficulties answering questions like:
+
+- *Which products are our top sellers by revenue?*
+
+- *Which customers contribute most to total sales?*
+
+- *How much has each customer spent over a period?*
+
+Without an automated and structured reporting system, retrieving this information can be time-consuming, error-prone, and inefficient.
+The Sales Reporting System addresses this gap by combining related tables through SQL queries and producing clear, concise, and accurate reports that can support data-driven decision-making.
+
+
 ## Tools used
+
+- PostgreSQL – For database storage and querying.
+
+- SQL - For querying the database
+
+- Power BI – For creating interactive dashboards (optional extension).
+
+- GitHub – For version control and project documentation.
+  
 ## Skills demonstrated
+
+-Relational database design & normalization
+
+-Writing complex SQL queries with joins
+
+-Aggregation & grouping of sales data
+
+-Creating views
+
+-Connecting SQL report from database to Power Bi 
+
+-Business intelligence reporting
+
+-Data visualization best practices
+
+-Markdown language
+
 ## Data Analysis
+
+A. Database Setup – Create and populate customers, products, and transactions tables.
+### Create tables:
+Customer, Product and cus_order  
+
+```sql
+Create Table Customer (
+customer_id SERIAL PRIMARY KEY, 
+    customer_name VARCHAR(100)not null, 
+    email VARCHAR(100) not null
+);
+     Create Table Product (
+ product_id SERIAL PRIMARY KEY, 
+    product_name VARCHAR(100), 
+    price NUMERIC 
+);
+
+create table cus_order(
+ order_id SERIAL PRIMARY KEY, 
+    customer_id INT REFERENCES customer(customer_id), 
+    product_id INT REFERENCES product(product_id), 
+    quantity INT 
+);
+```
+
+### Insert values into tables:
+Customer, Product and cus_order
+
+```sql
+INSERT INTO Customer (customer_name, email) 
+VALUES ('Alice Smith', 'alice@gmail.com'), 
+('Bob Johnson', 'bob@gmail.com'), 
+('Ejiro Johnson', 'ejiro@gmail.com'),
+('Joshua Oke', 'joshua@gmail.com'),
+('Charlie Okafor', 'charlie@gmail.com');
+
+INSERT INTO product (product_name, price)
+VALUES 
+    ('Laptop', 200000), 
+    ('Smartphone', 120000),
+    ('Earpiece', 2500),
+    ('Screenguard', 2000),
+    ('PhoneCharger', 3500),
+    ('Powerbank', 20000),
+    ('Headphones', 15000);
+
+INSERT INTO cus_order (customer_id, product_id, quantity)
+	VALUES (1, 1, 1),  -- Alice bought 1 Laptop 
+           (1, 1, 2),  -- Alice bought 2 Smartphones 
+           (1, 1, 3),
+		   (1, 2, 1),
+		   (1, 2, 2),
+		   (1, 2, 3),
+		   (1, 3, 1 ),
+		   (1, 3, 2),
+		   (1, 3, 3),
+		   (2, 1, 1),
+		   (2, 1, 2),
+		   (2, 1, 3),
+		   (2, 2, 1),
+		   (2, 2, 2),
+		   (2, 2, 3),
+		   (2, 3, 1),
+		   (2, 3, 2),
+		   (2, 3, 3),
+		   (3, 1, 1),
+		   (3, 1, 2),
+		   (3, 1, 3),
+		   (3, 2, 1),
+		   (3, 2, 2),
+		   (3, 2, 3),
+		   (3, 3, 1),
+		   (3, 1, 2),
+		   (3, 3, 3),
+		   (2, 3, 3),
+		   (2, 1, 3),
+		   (2, 1, 3),
+		   (1, 3, 3),
+		   (2, 3, 3),
+		   (2, 1, 3),
+		   (2, 3, 3),
+       (3, 2, 1);  -- Charlie bought 1 Smartphone
+
+```
+
+
+B. SQL Querying – Use joins and aggregations to combine datasets.
+
+###  Show each customer's name and the product they bought 
+
+```sql
+
+select distinct customer_name, product_name
+		   from customer
+		   inner join cus_order
+		   on customer.customer_id = cus_order.customer_id
+		   inner join product
+		   on product.product_id = cus_order.product_id
+```
+### Add quantity and total cost per order 
+```sql
+select customer_name, 
+ product_name,
+ quantity, 
+ price,
+    (cus_order.quantity * product.price) AS total_cost
+		   from customer
+		   inner join cus_order
+		   on customer.customer_id = cus_order.customer_id
+		   inner join product
+		   on product.product_id = cus_order.product_id
+		   group by customer_name, product_name, cus_order.quantity,product.price
+		   order by customer_name desc;
+```
+### Total spending per customer 
+```sql
+select customer_name, sum(total_cost) as total_payment
+		   from combined_table
+		   group by customer_name
+		   order by sum(total_cost) desc;
+```
+### Creating views
+- combined_table
+```sql
+
+create view combined_table as
+select customer_name, 
+ product_name,
+ quantity, 
+ price,
+    (cus_order.quantity * product.price) AS total_cost
+		   from customer
+		   inner join cus_order
+		   on customer.customer_id = cus_order.customer_id
+		   inner join product
+		   on product.product_id = cus_order.product_id
+		   group by customer_name, product_name, cus_order.quantity,product.price
+		   order by customer_name desc;
+```
+- total spending per customer
+```sql
+       create view combined_table_total_cost as
+		   select customer_name, sum(total_cost) as total_payment
+		   from combined_table
+		   group by customer_name
+		   order by sum(total_cost) desc;
+```
+
 ## Visualisations
+
+
+
 ## Insights from analysis
+
+- High-Value Customers Drive Most Revenue
+
+Alice Smith contributes almost ₦2M in total sales, making her the top customer by a wide margin.
+
+Charlie Okafor follows with over ₦1.1M, while Bob Johnson has minimal spending (~₦6,000).
+
+- Product Preferences Vary by Customer
+
+Alice Smith favors high-value items such as Laptops and Smartphones.
+
+Charlie Okafor’s purchases are diversified, covering Laptops, Headphones, and Powerbanks.
+
+Joshua Oke spends mostly on Headphones and Smartphones.
+
+- Sales Are Concentrated Among a Few Customers
+
+A small group of customers accounts for the majority of revenue, suggesting a dependency risk if these customers reduce their spending.
+
+- Product-Level Revenue Drivers
+
+High-ticket items like Laptops and Smartphones generate most of the revenue.
+
+Lower-cost accessories (e.g., Ear Pieces, Headphones, Screen Guards) sell in smaller amounts and contribute less to total sales.
+
+
 ## Conclusion and Recommendations
+
+- Customer Retention for Top Spenders
+
+Implement loyalty programs, personalized offers, or early product access for Alice Smith and Charlie Okafor to maintain their engagement.
+
+- Targeted Marketing for Low Spenders
+
+Offer bundle deals or discounts to customers like Bob Johnson to encourage more purchases.
+
+- Upselling & Cross-Selling Opportunities
+
+Suggest complementary products to high spenders like Alice and Charlie — e.g., offer accessories with Laptops and Smartphones.
+
+- Diversification of Customer Base
+
+Acquire new customers to reduce reliance on a few high spenders, balancing revenue streams.
+
+- Stock Prioritization
+
+Keep high-value items like Laptops and Smartphones well-stocked.
+
+- Promote accessories as add-on purchases to boost total order value.
+
+- Add date filters for custom time ranges.
+
+- Integrate predictive sales forecasting.
   
