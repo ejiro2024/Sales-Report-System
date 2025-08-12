@@ -229,6 +229,7 @@ select customer_name,
 
 ## Visualisations
 
+![salesreport](salesreport.PNG)
 
 
 ## Insights from analysis
