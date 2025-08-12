@@ -25,31 +25,14 @@ The data was generated randomly drawing from real world scenario.
 
 Example tables used:
 
-1. Customers Table
+1. Customers Table with the following fields:
+customer_id (Primary Key), customer_name, email  
 
-customer_id (Primary Key) 
+2. Products Table with the following fields:
+product_id (Primary Key), product_name, price
 
-customer_name  
-
-email
-
-2. Products Table
-
-product_id (Primary Key)
-
-product_name
-
-price
-
-3. Cus_Order Table
- 
-order_id   
-
-customer_id (Foreign Key)
-
-product_id (Foreign Key)
-
-quantity
+3. Cus_Order Table with the following fields:
+order_id, customer_id (Foreign Key), product_id (Foreign Key), quantity
 
 ## Problem Statement
 
@@ -250,29 +233,13 @@ select customer_name,
 
 ## Insights from analysis
 
-- High-Value Customers Drive Most Revenue
+- High-Value Customers Drive Revenue – Alice Smith is the top customer with nearly ₦2M in sales, followed by Charlie Okafor with ₦1.1M. Bob Johnson records the lowest spend at approximately ₦6,000.
 
-Alice Smith contributes almost ₦2M in total sales, making her the top customer by a wide margin.
+- Distinct Product Preferences – Alice Smith focuses on high-value purchases such as laptops and smartphones. Charlie Okafor shows a diversified buying pattern, including laptops, headphones, and powerbanks. Joshua Oke primarily purchases headphones and smartphones.
 
-Charlie Okafor follows with over ₦1.1M, while Bob Johnson has minimal spending (~₦6,000).
+- Revenue Concentration Risk – A small number of customers generate the bulk of total sales, creating dependency risks if their purchasing patterns decline.
 
-- Product Preferences Vary by Customer
-
-Alice Smith favors high-value items such as Laptops and Smartphones.
-
-Charlie Okafor’s purchases are diversified, covering Laptops, Headphones, and Powerbanks.
-
-Joshua Oke spends mostly on Headphones and Smartphones.
-
-- Sales Are Concentrated Among a Few Customers
-
-A small group of customers accounts for the majority of revenue, suggesting a dependency risk if these customers reduce their spending.
-
-- Product-Level Revenue Drivers
-
-High-ticket items like Laptops and Smartphones generate most of the revenue.
-
-Lower-cost accessories (e.g., Ear Pieces, Headphones, Screen Guards) sell in smaller amounts and contribute less to total sales.
+- Key Revenue Drivers – High-ticket products like laptops and smartphones account for most sales revenue, while lower-priced accessories contribute less despite selling in smaller quantities.
 
 
 ## Conclusion and Recommendations
