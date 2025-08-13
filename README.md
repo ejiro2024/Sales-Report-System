@@ -62,9 +62,9 @@ The Sales Reporting System addresses this gap by combining related tables throug
 
 - PostgreSQL – For database storage and querying.
 
-- SQL - For querying the database
+- SQL - For querying the database.
 
-- Power BI – For creating interactive dashboards (optional extension).
+- Power BI – For creating interactive dashboards.
 
 - GitHub – For version control and project documentation.
   
