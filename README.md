@@ -247,7 +247,7 @@ select customer_name,
 ```
 
 ## Visualisations
-The reports and tables were connected to Power Bi from the database using SQL queries.
+The reports and tables were connected to Power Bi from the database after creating views.
 
 On the Power Bi interface:
 
